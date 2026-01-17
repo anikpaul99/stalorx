@@ -41,8 +41,8 @@ export default function Header() {
               <div className="text-lg sm:text-2xl font-black tracking-tight">
                 StalorX
               </div>
-              <div className="text-[10px] sm:text-xs text-purple-300 tracking-widest uppercase">
-                Software
+              <div className="text-[10px] sm:text-xs text-purple-300 tracking-widest">
+                Software Solutions
               </div>
             </div>
           </Link>
