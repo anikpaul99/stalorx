@@ -1,27 +1,36 @@
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import ScrollToTop from "./components/layout/ScrollToTop";
-import Hero from "./components/sections/Hero";
-import Services from "./components/sections/Services";
-import TechStack from "./components/sections/TechStack";
-import Team from "./components/sections/Team";
-import WhyUs from "./components/sections/WhyUs";
-import Contact from "./components/sections/Contact";
+import ConstellationBackground from "./components/ConstellationBackground";
+import ParticleField from "./components/ParticleField";
+import GlowOrbs from "./components/GlowOrbs";
+import HeaderPremium from "./components/layout/HeaderPremium";
+import FooterPremium from "./components/layout/FooterPremium";
+import ScrollToTopPremium from "./components/layout/ScrollToTopPremium";
+import HeroPremium from "./components/sections/HeroPremium";
+import ServicesPremium from "./components/sections/ServicesPremium";
+import TechStackPremium from "./components/sections/TechStackPremium";
+import TeamPremium from "./components/sections/TeamPremium";
+import WhyUsPremium from "./components/sections/WhyUsPremium";
+import ContactPremium from "./components/sections/ContactPremium";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="overflow-x-hidden">
-        <Hero />
-        <Services />
-        <TechStack />
-        <Team />
-        <WhyUs />
-        <Contact />
+      {/* Background Effects */}
+      <ConstellationBackground />
+      <ParticleField />
+      <GlowOrbs />
+
+      {/* Layout */}
+      <HeaderPremium />
+      <main className="relative z-10">
+        <HeroPremium />
+        <ServicesPremium />
+        <TechStackPremium />
+        <TeamPremium />
+        <WhyUsPremium />
+        <ContactPremium />
       </main>
-      <Footer />
-      <ScrollToTop />
+      <FooterPremium />
+      <ScrollToTopPremium />
     </>
   );
 }
