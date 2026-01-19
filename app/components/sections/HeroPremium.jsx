@@ -8,7 +8,7 @@ import { STATS } from "@/lib/constants";
 
 export default function HeroPremium() {
   return (
-    <SectionPremium className="min-h-screen flex items-center pt-20">
+    <SectionPremium id="home" className="min-h-screen flex items-center pt-20">
       <div className="w-full text-center space-y-8">
         {/* Premium Badge */}
         <motion.div
