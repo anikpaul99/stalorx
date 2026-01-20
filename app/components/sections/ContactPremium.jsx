@@ -192,6 +192,8 @@
 //   )
 // }
 
+// v1 for contact update
+
 "use client";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Sparkles } from "lucide-react";
@@ -207,8 +209,8 @@ export default function ContactPremium() {
     {
       icon: Phone,
       label: "Phone",
-      value: "+880 XXX XXX",
-      href: "tel:+880",
+      value: "+880 1867-874406",
+      href: "tel:+8801867874406",
     },
     {
       icon: MapPin,
@@ -288,7 +290,7 @@ export default function ContactPremium() {
               <span>Send Us a Message</span>
             </a>
             <a
-              href="tel:+880"
+              href="tel:+8801867874406"
               className="btn-premium constellation-glow glass-premium text-platinum hover:glass-strong inline-flex items-center justify-center gap-2 text-sm sm:text-base font-semibold px-8 py-4 rounded-full"
             >
               <Phone className="w-5 h-5" />
