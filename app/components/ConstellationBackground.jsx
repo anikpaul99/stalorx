@@ -13,34 +13,32 @@ export default function ConstellationBackground() {
     let animationFrameId;
     let stars = [];
 
-    // Set canvas size
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       initStars();
     };
 
-    // Create stars (constellation nodes)
     const initStars = () => {
       stars = [];
-      const numStars = Math.floor((canvas.width * canvas.height) / 15000);
+      const numStars = Math.floor((canvas.width * canvas.height) / 12000);
 
       for (let i = 0; i < numStars; i++) {
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: (Math.random() - 0.5) * 0.2,
-          opacity: Math.random() * 0.5 + 0.3,
+          radius: Math.random() * 1.2 + 0.8,
+          vx: (Math.random() - 0.5) * 0.15,
+          vy: (Math.random() - 0.5) * 0.15,
+          opacity: Math.random() * 0.3 + 0.2,
         });
       }
     };
 
-    // Draw constellation lines
     const drawConstellations = () => {
-      ctx.strokeStyle = "rgba(99, 102, 241, 0.15)";
-      ctx.lineWidth = 0.5;
+      // Black lines for white background
+      ctx.strokeStyle = "rgba(30, 41, 59, 0.15)";
+      ctx.lineWidth = 1;
 
       for (let i = 0; i < stars.length; i++) {
         for (let j = i + 1; j < stars.length; j++) {
@@ -48,11 +46,11 @@ export default function ConstellationBackground() {
           const dy = stars[i].y - stars[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < 120) {
             ctx.beginPath();
             ctx.moveTo(stars[i].x, stars[i].y);
             ctx.lineTo(stars[j].x, stars[j].y);
-            ctx.globalAlpha = (1 - distance / 150) * 0.3;
+            ctx.globalAlpha = (1 - distance / 120) * 0.25;
             ctx.stroke();
           }
         }
@@ -60,36 +58,29 @@ export default function ConstellationBackground() {
       ctx.globalAlpha = 1;
     };
 
-    // Animate
     const animate = () => {
-      ctx.fillStyle = "rgba(10, 10, 15, 0.05)";
+      // Pure white background
+      ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw constellation lines
       drawConstellations();
 
-      // Draw and update stars
+      // Black/dark stars for visibility
       stars.forEach((star) => {
-        // Update position
         star.x += star.vx;
         star.y += star.vy;
 
-        // Bounce off edges
         if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
         if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
 
-        // Draw star
+        // Dark stars
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = "rgba(99, 102, 241, 0.8)";
+        ctx.fillStyle = `rgba(30, 41, 59, ${star.opacity})`;
         ctx.fill();
-        ctx.shadowBlur = 0;
 
-        // Pulse effect
-        star.opacity += (Math.random() - 0.5) * 0.02;
-        star.opacity = Math.max(0.2, Math.min(0.8, star.opacity));
+        star.opacity += (Math.random() - 0.5) * 0.015;
+        star.opacity = Math.max(0.15, Math.min(0.4, star.opacity));
       });
 
       animationFrameId = requestAnimationFrame(animate);

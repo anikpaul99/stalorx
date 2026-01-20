@@ -6,16 +6,12 @@ import CardPremium from "../ui/CardPremium";
 import SectionPremium from "../ui/SectionPremium";
 import { SERVICES } from "@/lib/constants";
 
-const iconMap = {
-  code: Code,
-  zap: Zap,
-  shield: Shield,
-};
+const iconMap = { code: Code, zap: Zap, shield: Shield };
 
 export default function ServicesPremium() {
   return (
     <SectionPremium id="services">
-      <div className="section-divider mb-16" />
+      <div className="divider-clean mb-16" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -24,10 +20,10 @@ export default function ServicesPremium() {
         className="text-center mb-16 space-y-4"
       >
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black">
-          <span className="text-white">What We </span>
-          <span className="text-constellation">Create</span>
+          <span className="text-text-black">What We </span>
+          <span className="text-gradient-brand">Create</span>
         </h2>
-        <p className="text-lg sm:text-xl text-silver max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl text-text-gray max-w-2xl mx-auto">
           Comprehensive solutions powered by modern technology and innovative
           thinking
         </p>
@@ -38,28 +34,22 @@ export default function ServicesPremium() {
           const Icon = iconMap[service.icon];
           return (
             <CardPremium key={service.id} delay={idx * 0.1} className="group">
-              <div
-                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-nebula-purple to-nebula-blue 
-                            flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-              >
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-purple flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
                 <Icon className="w-8 h-8 text-white" />
               </div>
-
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-text-black mb-4">
                 {service.title}
               </h3>
-
-              <p className="text-silver leading-relaxed mb-6">
+              <p className="text-text-gray leading-relaxed mb-6">
                 {service.description}
               </p>
-
               <ul className="space-y-3">
                 {service.features.map((feature, i) => (
                   <li
                     key={i}
-                    className="flex items-center gap-3 text-sm text-platinum"
+                    className="flex items-center gap-3 text-sm text-text-gray"
                   >
-                    <CheckCircle className="w-4 h-4 text-nebula-purple flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-brand-blue flex-shrink-0" />
                     {feature}
                   </li>
                 ))}
