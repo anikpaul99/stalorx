@@ -19,14 +19,14 @@ export default function FooterPremium() {
               S
             </motion.div>
             <div>
-              <div className="text-xl font-black text-white">Stalorx</div>
+              <div className="text-xl font-black text-white">StalorX</div>
               <div className="text-xs text-stardust">Software Solutions</div>
             </div>
           </Link>
 
           {/* Copyright */}
           <div className="text-silver text-sm flex items-center gap-2">
-            © 2026 Stalorx. Crafted with{" "}
+            © 2026 StalorX. Crafted with{" "}
             <Heart className="w-4 h-4 text-nebula-purple" /> in Bangladesh
           </div>
 

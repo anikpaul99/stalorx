@@ -33,7 +33,7 @@ export default function HeroPremium() {
         >
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] tracking-tight">
             <span className="block text-white mb-4">Build The Future</span>
-            <span className="block text-constellation">With Stalorx</span>
+            <span className="block text-constellation">With StalorX</span>
           </h1>
         </motion.div>
 

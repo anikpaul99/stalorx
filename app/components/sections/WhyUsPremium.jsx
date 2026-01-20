@@ -24,7 +24,7 @@ export default function WhyUsPremium() {
       >
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4">
           <span className="text-white">Why Partner With </span>
-          <span className="text-constellation">Stalorx?</span>
+          <span className="text-constellation">StalorX?</span>
         </h2>
       </motion.div>
 
