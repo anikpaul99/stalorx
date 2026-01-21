@@ -1,87 +1,78 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Premium Space Theme Configuration */
+/* PERFECT DUAL THEME - Light (Default) + Dark Mode */
 @theme {
-  /* Premium Color Palette - Royal Black, White, Platinum */
-  --color-space-black: #0a0a0f;
-  --color-deep-space: #141420;
-  --color-cosmic-gray: #1a1a2e;
-  --color-platinum: #e8e8ea;
-  --color-silver: #c0c0c8;
-  --color-stardust: #8b8b99;
-  --color-nebula-purple: #6366f1;
-  --color-nebula-blue: #3b82f6;
-  --color-constellation-gold: #fbbf24;
+  /* Light Mode Colors (Default) */
+  --color-bg-light: #fafbfc;
+  --color-bg-secondary-light: #f5f7fa;
+  --color-border-light: #e2e8f0;
+  --color-text-primary-light: #0f172a;
+  --color-text-secondary-light: #475569;
+  --color-text-tertiary-light: #64748b;
 
-  /* Premium Gradients */
-  --gradient-royal: linear-gradient(
-    135deg,
-    #0a0a0f 0%,
-    #1a1a2e 50%,
-    #0a0a0f 100%
-  );
-  --gradient-constellation: linear-gradient(
-    135deg,
-    #6366f1 0%,
-    #3b82f6 50%,
-    #6366f1 100%
-  );
-  --gradient-platinum: linear-gradient(135deg, #e8e8ea 0%, #c0c0c8 100%);
+  /* Dark Mode Colors */
+  --color-bg-dark: #0a0a0f;
+  --color-bg-secondary-dark: #141420;
+  --color-border-dark: #1e293b;
+  --color-text-primary-dark: #e8e8ea;
+  --color-text-secondary-dark: #c0c0c8;
+  --color-text-tertiary-dark: #8b8b99;
 
-  /* Premium Shadows */
-  --shadow-constellation: 0 0 40px rgba(99, 102, 241, 0.3);
-  --shadow-stardust: 0 20px 60px rgba(99, 102, 241, 0.15);
-  --shadow-glow: 0 0 20px rgba(251, 191, 36, 0.4);
+  /* Brand Colors (Same for both modes) */
+  --color-brand-purple: #6366f1;
+  --color-brand-blue: #3b82f6;
+  --color-accent-gold: #fbbf24;
 
-  /* Premium Typography */
-  --font-display: "Inter", -apple-system, sans-serif;
-  --letter-spacing-luxury: -0.02em;
+  /* Shadows */
+  --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-brand: 0 10px 30px rgba(99, 102, 241, 0.2);
 
-  /* Constellation Animation Variables */
-  --constellation-speed: 20s;
-  --particle-speed: 30s;
+  /* Typography */
+  --font-display:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Constellation Keyframes */
-@keyframes constellation-float {
+/* Animations */
+@keyframes particle-float {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate(10px, -10px) scale(1.05);
-    opacity: 1;
-  }
-}
-
-@keyframes particle-drift {
-  0% {
     transform: translateY(0) translateX(0);
     opacity: 0;
   }
   10% {
-    opacity: 1;
+    opacity: 0.6;
   }
   90% {
-    opacity: 1;
+    opacity: 0.6;
   }
   100% {
-    transform: translateY(-100vh) translateX(50px);
+    transform: translateY(-100vh) translateX(30px);
     opacity: 0;
   }
 }
 
-@keyframes pulse-glow {
+@keyframes constellation-pulse {
   0%,
   100% {
     opacity: 0.3;
-    filter: blur(40px);
   }
   50% {
     opacity: 0.6;
-    filter: blur(50px);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -94,27 +85,49 @@
   }
 }
 
-@keyframes line-draw {
-  0% {
-    stroke-dashoffset: 1000;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* Base Styles - Premium Space Theme */
+/* Base Styles */
 @layer base {
+  * {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   html {
     scroll-behavior: smooth;
     @apply antialiased;
   }
 
   body {
-    @apply bg-space-black text-platinum;
     font-family: var(--font-display);
-    letter-spacing: var(--letter-spacing-luxury);
-    background: radial-gradient(
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  /* Light Mode (Default) */
+  body {
+    background:
+      radial-gradient(
+        ellipse at top,
+        rgba(99, 102, 241, 0.03) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse at bottom,
+        rgba(59, 130, 246, 0.02) 0%,
+        transparent 50%
+      ),
+      #fafbfc;
+    color: #0f172a;
+  }
+
+  /* Dark Mode */
+  body.dark {
+    background:
+      radial-gradient(
         ellipse at top,
         rgba(99, 102, 241, 0.1) 0%,
         transparent 50%
@@ -125,52 +138,88 @@
         transparent 50%
       ),
       #0a0a0f;
-    position: relative;
-    overflow-x: hidden;
+    color: #e8e8ea;
   }
 }
 
 /* Premium Utility Classes */
 @layer utilities {
-  /* Text Gradients */
-  .text-constellation {
-    @apply bg-gradient-to-r from-nebula-purple via-nebula-blue to-nebula-purple bg-clip-text text-transparent;
-    background-size: 200% auto;
-    animation: shimmer 3s linear infinite;
+  /* Text Gradient */
+  .text-gradient-brand {
+    @apply bg-gradient-to-r from-brand-purple to-brand-blue bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
   }
 
-  .text-platinum-gradient {
-    @apply bg-gradient-to-r from-platinum via-white to-platinum bg-clip-text text-transparent;
+  /* Cards - Light Mode */
+  .card-clean {
+    background: white;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
   }
 
-  .text-gold-shimmer {
-    @apply bg-gradient-to-r from-constellation-gold via-yellow-200 to-constellation-gold bg-clip-text text-transparent;
-    background-size: 200% auto;
-    animation: shimmer 2s linear infinite;
+  .card-clean:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: #6366f1;
+    transform: translateY(-4px);
   }
 
-  /* Glass Effects */
-  .glass-premium {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
-    box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.1),
+  /* Cards - Dark Mode */
+  .dark .card-clean {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 8px 32px 0 rgba(99, 102, 241, 0.1),
       inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
   }
 
-  .glass-strong {
-    @apply bg-white/10 backdrop-blur-2xl border border-white/20;
-    box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.2),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-  }
-
-  /* Premium Card Hover */
-  .card-premium-hover {
-    @apply transition-all duration-500 ease-out;
-  }
-
-  .card-premium-hover:hover {
-    @apply scale-105;
-    box-shadow: var(--shadow-constellation);
+  .dark .card-clean:hover {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
     border-color: rgba(99, 102, 241, 0.5);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-gradient-to-r from-brand-purple to-brand-blue text-white;
+    @apply px-6 py-3 rounded-full font-semibold;
+    @apply transition-all duration-300;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+    border: none;
+    outline: none;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-full font-semibold;
+    @apply transition-all duration-300;
+    border: 2px solid #e2e8f0;
+    background: white;
+    color: #0f172a;
+    outline: none;
+  }
+
+  .btn-secondary:hover {
+    border-color: #6366f1;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .dark .btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #e8e8ea;
+    backdrop-filter: blur(12px);
+  }
+
+  .dark .btn-secondary:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   /* Constellation Glow */
@@ -191,41 +240,46 @@
   }
 
   .constellation-glow:hover::before {
-    opacity: 0.6;
+    opacity: 0.4;
   }
 
-  /* Premium Button Base */
-  .btn-premium {
-    @apply relative overflow-hidden px-8 py-4 rounded-full font-semibold;
-    @apply transition-all duration-300 ease-out;
-    @apply border border-white/20;
+  /* Glass Effect */
+  .glass-premium {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12px);
   }
 
-  .btn-premium::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(99, 102, 241, 0.2),
-      rgba(59, 130, 246, 0.2)
-    );
-    opacity: 0;
-    transition: opacity 0.3s;
+  .dark .glass-premium {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
   }
 
-  .btn-premium:hover::before {
-    opacity: 1;
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(16px);
   }
 
-  .btn-premium:hover {
-    @apply scale-105 border-white/40;
-    box-shadow: var(--shadow-constellation);
+  .dark .glass-strong {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px);
   }
 
-  /* Section Divider */
-  .section-divider {
+  /* Divider */
+  .divider-clean {
     height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #e2e8f0 50%,
+      transparent 100%
+    );
+  }
+
+  .dark .divider-clean {
     background: linear-gradient(
       90deg,
       transparent 0%,
@@ -233,9 +287,34 @@
       transparent 100%
     );
   }
+
+  /* Text Colors - Adaptive */
+  .text-adaptive-primary {
+    color: #0f172a;
+  }
+
+  .dark .text-adaptive-primary {
+    color: #e8e8ea;
+  }
+
+  .text-adaptive-secondary {
+    color: #475569;
+  }
+
+  .dark .text-adaptive-secondary {
+    color: #c0c0c8;
+  }
+
+  .text-adaptive-tertiary {
+    color: #64748b;
+  }
+
+  .dark .text-adaptive-tertiary {
+    color: #8b8b99;
+  }
 }
 
-/* Constellation Background Layer */
+/* Constellation Background */
 .constellation-bg {
   position: fixed;
   top: 0;
@@ -244,10 +323,10 @@
   height: 100%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
-/* Particle Container */
+/* Particles */
 .particles-container {
   position: fixed;
   top: 0;
@@ -259,45 +338,42 @@
   overflow: hidden;
 }
 
-/* Individual Particles */
 .particle {
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
+  width: 3px;
+  height: 3px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   border-radius: 50%;
-  animation: particle-drift var(--particle-speed) linear infinite;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+  animation: particle-float 28s linear infinite;
+  opacity: 0.5;
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.4);
 }
 
-/* Glow Orbs */
-.glow-orb {
+.dark .particle {
+  opacity: 0.6;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+}
+
+/* Shimmer Effect */
+.shimmer {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
-  animation: pulse-glow 8s ease-in-out infinite;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
   pointer-events: none;
 }
 
-.glow-orb-purple {
-  background: radial-gradient(
-    circle,
-    rgba(99, 102, 241, 0.3) 0%,
-    transparent 70%
+.dark .shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
   );
-}
-
-.glow-orb-blue {
-  background: radial-gradient(
-    circle,
-    rgba(59, 130, 246, 0.3) 0%,
-    transparent 70%
-  );
-}
-
-/* Responsive Premium Spacing */
-@media (max-width: 640px) {
-  .constellation-glow::before {
-    filter: blur(15px);
-  }
 }
