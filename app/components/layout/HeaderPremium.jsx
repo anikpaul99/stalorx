@@ -455,10 +455,10 @@ export default function HeaderPremium() {
             </motion.div>
             <div>
               <div className="text-2xl font-black text-white tracking-tight">
-                Stalorx
+                StalorX
               </div>
               <div className="text-xs text-stardust uppercase tracking-widest">
-                Software
+                Software Solutions
               </div>
             </div>
           </div>
