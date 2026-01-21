@@ -19,7 +19,7 @@ export default function WhyUsPremium() {
         className="text-center mb-16"
       >
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-4">
-          <span className="text-text-black">Why Partner With </span>
+          <span className="text-adaptive-primary">Why Partner With </span>
           <span className="text-gradient-brand">StalorX?</span>
         </h2>
       </motion.div>
@@ -37,15 +37,15 @@ export default function WhyUsPremium() {
               className="text-center space-y-4"
             >
               <motion.div
-                whileHover={{ scale: 1.1 }}
-                className={`w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-md`}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className={`w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg`}
               >
                 <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
               </motion.div>
-              <h3 className="text-xl sm:text-2xl font-bold text-text-black">
+              <h3 className="text-xl sm:text-2xl font-bold text-adaptive-primary">
                 {item.title}
               </h3>
-              <p className="text-text-gray leading-relaxed">
+              <p className="text-adaptive-secondary leading-relaxed">
                 {item.description}
               </p>
             </motion.div>

@@ -1,5 +1,6 @@
 "use client";
 
+// Disabled for cleaner dual-theme look
 export default function GlowOrbs() {
-  return null; // Disabled for clean white theme
+  return null;
 }

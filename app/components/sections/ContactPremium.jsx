@@ -1,4 +1,5 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Sparkles } from "lucide-react";
 
@@ -33,10 +34,12 @@ export default function ContactPremium() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
-              <span className="text-text-black">Ready To Build Something </span>
+              <span className="text-adaptive-primary">
+                Ready To Build Something{" "}
+              </span>
               <span className="text-gradient-brand">Amazing?</span>
             </h2>
-            <p className="text-lg sm:text-xl text-text-gray max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-adaptive-secondary max-w-2xl mx-auto">
               Let&apos;s turn your vision into reality. Get in touch and
               let&apos;s start crafting your success story.
             </p>
@@ -59,13 +62,14 @@ export default function ContactPremium() {
                 <Element
                   key={idx}
                   {...props}
-                  className="card-clean p-6 hover:border-brand-blue transition-all group block"
+                  className="card-clean rounded-2xl p-6 hover:border-brand-purple transition-all group block"
+                  style={{ outline: "none" }}
                 >
-                  <IconComponent className="w-8 h-8 text-brand-blue mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                  <div className="text-xs text-text-light mb-1 uppercase tracking-wider">
+                  <IconComponent className="w-8 h-8 text-brand-purple mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                  <div className="text-xs text-adaptive-tertiary mb-1 uppercase tracking-wider">
                     {contact.label}
                   </div>
-                  <div className="text-sm font-semibold text-text-gray">
+                  <div className="text-sm font-semibold text-adaptive-secondary">
                     {contact.value}
                   </div>
                 </Element>
@@ -83,6 +87,7 @@ export default function ContactPremium() {
             <a
               href="mailto:contact@stalorx.com"
               className="btn-primary inline-flex items-center justify-center gap-2 text-sm sm:text-base"
+              style={{ outline: "none", border: "none" }}
             >
               <Sparkles className="w-4 h-4" />
               <Mail className="w-5 h-5" />
@@ -91,6 +96,7 @@ export default function ContactPremium() {
             <a
               href="tel:+8801867874406"
               className="btn-secondary inline-flex items-center justify-center gap-2 text-sm sm:text-base"
+              style={{ outline: "none" }}
             >
               <Phone className="w-5 h-5" />
               <span>Schedule A Call</span>

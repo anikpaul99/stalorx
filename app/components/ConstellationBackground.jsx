@@ -1,9 +1,28 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ConstellationBackground() {
   const canvasRef = useRef(null);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme
+    const checkTheme = () => {
+      setIsDark(document.body.classList.contains("dark"));
+    };
+
+    checkTheme();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -36,8 +55,10 @@ export default function ConstellationBackground() {
     };
 
     const drawConstellations = () => {
-      // Black lines for white background
-      ctx.strokeStyle = "rgba(30, 41, 59, 0.15)";
+      // Adaptive colors based on theme
+      ctx.strokeStyle = isDark
+        ? "rgba(99, 102, 241, 0.2)"
+        : "rgba(99, 102, 241, 0.15)";
       ctx.lineWidth = 1;
 
       for (let i = 0; i < stars.length; i++) {
@@ -50,7 +71,7 @@ export default function ConstellationBackground() {
             ctx.beginPath();
             ctx.moveTo(stars[i].x, stars[i].y);
             ctx.lineTo(stars[j].x, stars[j].y);
-            ctx.globalAlpha = (1 - distance / 120) * 0.25;
+            ctx.globalAlpha = (1 - distance / 120) * (isDark ? 0.3 : 0.2);
             ctx.stroke();
           }
         }
@@ -59,13 +80,14 @@ export default function ConstellationBackground() {
     };
 
     const animate = () => {
-      // Pure white background
-      ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+      // Adaptive background
+      ctx.fillStyle = isDark
+        ? "rgba(10, 10, 15, 0.05)"
+        : "rgba(250, 251, 252, 0.1)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       drawConstellations();
 
-      // Black/dark stars for visibility
       stars.forEach((star) => {
         star.x += star.vx;
         star.y += star.vy;
@@ -73,14 +95,26 @@ export default function ConstellationBackground() {
         if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
         if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
 
-        // Dark stars
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(30, 41, 59, ${star.opacity})`;
+
+        // Adaptive star color
+        ctx.fillStyle = isDark
+          ? `rgba(99, 102, 241, ${star.opacity})`
+          : `rgba(99, 102, 241, ${star.opacity * 0.7})`;
+
+        ctx.shadowBlur = isDark ? 8 : 6;
+        ctx.shadowColor = isDark
+          ? "rgba(99, 102, 241, 0.5)"
+          : "rgba(99, 102, 241, 0.3)";
         ctx.fill();
+        ctx.shadowBlur = 0;
 
         star.opacity += (Math.random() - 0.5) * 0.015;
-        star.opacity = Math.max(0.15, Math.min(0.4, star.opacity));
+        star.opacity = Math.max(
+          0.15,
+          Math.min(isDark ? 0.5 : 0.4, star.opacity),
+        );
       });
 
       animationFrameId = requestAnimationFrame(animate);
@@ -95,7 +129,7 @@ export default function ConstellationBackground() {
       window.removeEventListener("resize", resizeCanvas);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isDark]);
 
   return (
     <canvas
