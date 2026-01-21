@@ -14,11 +14,10 @@ export default function ButtonPremium({
   onClick,
 }) {
   const variants = {
-    primary:
-      "bg-gradient-to-r from-nebula-purple to-nebula-blue text-white border-0",
-    secondary: "glass-premium text-platinum hover:glass-strong",
+    primary: "btn-primary",
+    secondary: "btn-secondary",
     outline:
-      "border border-white/30 text-platinum hover:border-white/60 hover:bg-white/5",
+      "border border-white/30 text-adaptive-primary hover:border-white/60 hover:bg-white/5",
   };
 
   const Component = href ? Link : motion.button;
@@ -31,13 +30,17 @@ export default function ButtonPremium({
       href={href}
       onClick={onClick}
       className={`
-        btn-premium constellation-glow
         ${variants[variant]}
         ${className}
+        constellation-glow
         inline-flex items-center justify-center gap-2
         text-sm sm:text-base font-semibold
         relative group
       `}
+      style={{
+        outline: "none",
+        border: variant === "primary" ? "none" : undefined,
+      }}
       {...motionProps}
     >
       {showSparkles && <Sparkles className="w-4 h-4 opacity-70" />}

@@ -16,17 +16,14 @@ export default function CardPremium({
       transition={{ duration: 0.5, delay }}
       whileHover={hover ? { y: -8 } : {}}
       className={`
-        glass-premium rounded-3xl p-6 sm:p-8
-        ${hover ? "card-premium-hover" : ""}
+        card-clean rounded-3xl p-6 sm:p-8
         ${className}
-        relative overflow-hidden
+        relative overflow-hidden group
       `}
+      style={{ outline: "none" }}
     >
       {/* Shimmer effect */}
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent 
-                      translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"
-      />
+      {/* <div className="shimmer" /> */}
       {children}
     </motion.div>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import ButtonPremium from "../ui/ButtonPremium";
 import SectionPremium from "../ui/SectionPremium";
 import { STATS } from "@/lib/constants";
@@ -10,45 +10,43 @@ export default function HeroPremium() {
   return (
     <SectionPremium id="home" className="min-h-screen flex items-center pt-20">
       <div className="w-full text-center space-y-8">
-        {/* Premium Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="inline-block"
         >
-          <div className="glass-premium px-6 py-3 rounded-full inline-flex items-center gap-2 text-sm font-medium">
-            <Sparkles className="w-4 h-4 text-constellation-gold" />
-            <span className="text-platinum">
+          <div className="card-clean px-6 py-3 rounded-full inline-flex items-center gap-2 text-sm font-medium shadow-md">
+            <Sparkles className="w-4 h-4 text-accent-gold" />
+            <span className="text-adaptive-secondary font-semibold">
               Transforming Ideas Into Digital Reality
             </span>
           </div>
         </motion.div>
 
-        {/* Main Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] tracking-tight">
-            <span className="block text-white mb-4">Build The Future</span>
-            <span className="block text-constellation">With StalorX</span>
+            <span className="block text-adaptive-primary mb-4">
+              Build The Future
+            </span>
+            <span className="block text-gradient-brand">With StalorX</span>
           </h1>
         </motion.div>
 
-        {/* Subheading */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg sm:text-xl lg:text-2xl text-silver max-w-3xl mx-auto leading-relaxed"
+          className="text-lg sm:text-xl lg:text-2xl text-adaptive-secondary max-w-3xl mx-auto leading-relaxed"
         >
           We craft extraordinary digital experiences that drive growth, delight
           users, and stand the test of time.
         </motion.p>
 
-        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,7 +66,6 @@ export default function HeroPremium() {
           </ButtonPremium>
         </motion.div>
 
-        {/* Stats */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -83,17 +80,17 @@ export default function HeroPremium() {
               transition={{ duration: 0.5, delay: 1 + idx * 0.1 }}
               className="space-y-2"
             >
-              <div className="text-4xl sm:text-5xl lg:text-6xl font-black text-constellation">
+              <div className="text-4xl sm:text-5xl lg:text-6xl font-black text-gradient-brand">
                 {stat.number}
               </div>
-              <div className="text-sm sm:text-base text-stardust font-medium uppercase tracking-wider">
+              <div className="text-sm sm:text-base text-adaptive-secondary font-medium uppercase tracking-wider">
                 {stat.label}
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator with Line */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -103,10 +100,12 @@ export default function HeroPremium() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="inline-flex flex-col items-center gap-2 text-stardust"
+            className="inline-flex flex-col items-center gap-2 text-adaptive-tertiary"
           >
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <div className="w-px h-16 bg-gradient-to-b from-stardust to-transparent" />
+            <span className="text-xs uppercase tracking-widest font-medium">
+              Scroll
+            </span>
+            <div className="w-px h-16 bg-gradient-to-b from-brand-purple via-brand-blue to-transparent opacity-50" />
           </motion.div>
         </motion.div>
       </div>
