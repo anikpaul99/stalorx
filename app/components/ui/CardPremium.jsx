@@ -23,7 +23,7 @@ export default function CardPremium({
       style={{ outline: "none" }}
     >
       {/* Shimmer effect */}
-      <div className="shimmer" />
+      {/* <div className="shimmer" /> */}
       {children}
     </motion.div>
   );

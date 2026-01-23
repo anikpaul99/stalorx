@@ -1,6 +1,7 @@
 "use client";
 
 export default function ParticleField() {
+  // More particles for better visibility
   const particles = [
     { id: 0, left: "15%", delay: "0s", duration: "28s" },
     { id: 1, left: "45%", delay: "3s", duration: "32s" },
@@ -17,6 +18,11 @@ export default function ParticleField() {
     { id: 12, left: "50%", delay: "7s", duration: "31s" },
     { id: 13, left: "80%", delay: "5s", duration: "27s" },
     { id: 14, left: "40%", delay: "2s", duration: "32s" },
+    { id: 15, left: "5%", delay: "9s", duration: "30s" },
+    { id: 16, left: "60%", delay: "4s", duration: "28s" },
+    { id: 17, left: "95%", delay: "6s", duration: "33s" },
+    { id: 18, left: "30%", delay: "8s", duration: "29s" },
+    { id: 19, left: "12%", delay: "1s", duration: "31s" },
   ];
 
   return (
