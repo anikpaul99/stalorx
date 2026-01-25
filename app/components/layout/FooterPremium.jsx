@@ -6,7 +6,7 @@ import { Heart } from "lucide-react";
 
 export default function FooterPremium() {
   return (
-    <footer className="relative z-10 border-t py-12 glass-premium">
+    <footer className="relative z-10 border-t border-adaptive-border py-12 glass-premium">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <Link href="/" className="flex items-center gap-3 group">
