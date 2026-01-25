@@ -118,14 +118,14 @@ export default function HeaderPremium() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass-strong border-t border-white/10"
+            className="md:hidden mobile-menu-enhanced"
           >
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
                 <div
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-lg font-semibold text-adaptive-secondary hover:text-adaptive-primary transition-colors py-2 cursor-pointer"
+                  className="text-lg font-semibold text-adaptive-primary hover:text-brand-purple transition-colors py-2 cursor-pointer"
                   style={{ outline: "none", border: "none" }}
                 >
                   {item.name}
@@ -133,7 +133,7 @@ export default function HeaderPremium() {
               ))}
               <div
                 onClick={() => scrollToSection("contact")}
-                className="w-full btn-primary cursor-pointer inline-flex items-center justify-center gap-2 text-sm"
+                className="w-full btn-primary cursor-pointer inline-flex items-center justify-center gap-2 text-sm mt-4"
                 style={{ outline: "none", border: "none" }}
               >
                 <Sparkles className="w-4 h-4" />
