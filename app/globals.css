@@ -375,7 +375,7 @@
   height: 4px;
   background: linear-gradient(135deg, #6366f1, #8b5cf6);
   border-radius: 50%;
-  animation: particle-float linear infinite;
+  animation: particle-float 30s linear infinite;
   opacity: 0;
   box-shadow:
     0 0 10px rgba(99, 102, 241, 0.5),
